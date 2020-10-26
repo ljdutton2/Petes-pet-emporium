@@ -55,4 +55,14 @@ module.exports = (app) => {
       return res.redirect('/')
     });
   });
+  
+  // SEARCH PET
+  app.get('/search', (req, res) => {
+    Pet.find({$or:[
+      {'name': term},
+      {'species': term}
+    ]}).exec((err, pets) => {
+      res.render('pets-index', { pets: pets });
+    })  
+});
 }
