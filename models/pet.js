@@ -21,7 +21,8 @@ const PetSchema = new Schema({
 }, {
   timestamps: true
 });
-
+// without weights
+PetSchema.index({ name: 'text', species: 'text', favoriteFood: 'text', description: 'text' });
 PetSchema.plugin(mongoosePaginate);
 
 module.exports = mongoose.model('Pet', PetSchema);
